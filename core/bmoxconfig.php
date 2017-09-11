@@ -18,6 +18,9 @@ class bmoxconfig extends bmoxconfig_parent {
     {
         if ($sName == 'sAltImageUrl') {
             $cdnServers = oxRegistry::getConfig()->getShopConfVar('sAltImageUrlCDN');
+            if (is_null($cdnServers)) {
+                return parent::getConfigParam( $sName );
+            }
             $randCDNServer = array_rand($cdnServers, 1);
             if ( is_null ($randCDNServer)) {
                 return parent::getConfigParam( $sName );
@@ -26,6 +29,9 @@ class bmoxconfig extends bmoxconfig_parent {
         }
         if ($sName == 'sSSLAltImageUrl') {
             $cdnServers = oxRegistry::getConfig()->getShopConfVar('sSSLAltImageUrlCDN');
+            if (is_null($cdnServers)) {
+                return parent::getConfigParam( $sName );
+            }
             $randCDNServer = array_rand($cdnServers, 1);
             if ( is_null ($randCDNServer)) {
                 return parent::getConfigParam( $sName );
@@ -35,4 +41,3 @@ class bmoxconfig extends bmoxconfig_parent {
         return parent::getConfigParam( $sName );
     }
 }
-  
